@@ -29,7 +29,7 @@ def all_species(filename):
     data_log.close
 
 
-print(all_species("villagers.csv"))
+# print(all_species("villagers.csv"))
 
 
 def get_villagers_by_species(filename, search_string="All"):
@@ -46,8 +46,21 @@ def get_villagers_by_species(filename, search_string="All"):
     villagers = []
 
     # TODO: replace this with your code
+    data_log = open(filename)
+    search_species = search_string
+
+    for line in data_log:
+        line = line.rstrip()
+        words = line.split("|")
+
+        names_by_species = words[0], words[1]
+        if search_species in names_by_species:
+            villagers.append(names_by_species)
 
     return sorted(villagers)
+
+
+print(get_villagers_by_species("villagers.csv", "Horse"))
 
 
 def all_names_by_hobby(filename):
