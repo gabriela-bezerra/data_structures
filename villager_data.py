@@ -15,7 +15,21 @@ def all_species(filename):
 
     # TODO: replace this with your code
 
+    data_log = open(filename)
+
+    for line in data_log:
+        line = line.rstrip()
+        words = line.split("|")
+
+        species_file = words[1]
+        species.add(species_file)
+
     return species
+
+    data_log.close
+
+
+print(all_species("villagers.csv"))
 
 
 def get_villagers_by_species(filename, search_string="All"):
