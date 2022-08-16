@@ -1,6 +1,9 @@
 """Functions to parse a file containing villager data."""
 
 
+from tkinter import N
+
+
 def all_species(filename):
     """Return a set of unique species in the given file.
 
@@ -47,6 +50,7 @@ def get_villagers_by_species(filename, search_string="All"):
 
     # TODO: replace this with your code
     data_log = open(filename)
+
     search_species = search_string
 
     for line in data_log:
@@ -74,17 +78,44 @@ def all_names_by_hobby(filename):
     """
 
     # TODO: replace this with your code
+
     data_log = open(filename)
 
-    names_by_hobby = []
+    fitness = []
+    nature = []
+    education = []
+    music = []
+    fashion = []
+    play = []
 
     for line in data_log:
-        line = line.rstrip()
-        words = line.split("|")
 
-        names = words[0], words[3]
+        name, _, _, hobby, _ = line.rstrip().split("|")
 
-    return []
+        if hobby == "Fitness":
+            fitness.append(name)
+        elif hobby == "Nature":
+            nature.append(name)
+        elif hobby == "Education":
+            education.append(name)
+        elif hobby == "Music":
+            music.append(name)
+        elif hobby == "Fashion":
+            fashion.append(name)
+        elif hobby == "Play":
+            play.append(name)
+
+    return [
+        sorted(fitness),
+        sorted(nature),
+        sorted(education),
+        sorted(music),
+        sorted(fashion),
+        sorted(play),
+    ]
+
+
+# print(all_names_by_hobby("villagers.csv"))
 
 
 def all_data(filename):
@@ -104,7 +135,19 @@ def all_data(filename):
 
     # TODO: replace this with your code
 
+    data_log = open(filename)
+
+    for line in data_log:
+
+        name, species, personality, hobby = line.rstrip().split("|")
+
+        all_data.append(tuple(name, species, personality, hobby))
+        # all_data.append(tuple(line.rstrip().split("|")))
+
     return all_data
+
+
+# print(all_data("villagers.csv"))
 
 
 def find_motto(filename, villager_name):
@@ -123,6 +166,25 @@ def find_motto(filename, villager_name):
 
     # TODO: replace this with your code
 
+#     data_log = open(filename)
+
+#     # motto_result = ""
+
+#     # for line in filename:
+#     #     name, _, _, _, motto = line.rstrip(), line.split("|")
+
+#     #     if villager_name == name:
+#     #         motto_result = motto
+
+#     # return motto_result
+
+#     for name, _, _, _, motto in data_log(filename):
+#         if name == villager_name:
+#             return motto
+
+
+# print(find_motto("villagers.csv", "Tutu"))
+
 
 def find_likeminded_villagers(filename, villager_name):
     """Return a set of villagers with the same personality as the given villager.
@@ -140,3 +202,21 @@ def find_likeminded_villagers(filename, villager_name):
     """
 
     # TODO: replace this with your code
+
+    # likeminded = set()
+
+    # target_personality = None
+    # for villager_data in all_data(filename):
+    #     name, _, personality = villager_data[:3]
+
+    #     if name == villager_name:
+    #         target_personality = personality
+    #         break
+
+    # if target_personality:
+    #     for villager_data in all_data(filename):
+    #         name, _, personality = villager_data[:3]
+    #         if personality == target_personality:
+    #             likeminded.add(name)
+
+    # return likeminded
