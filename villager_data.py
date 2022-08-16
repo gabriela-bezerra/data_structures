@@ -60,7 +60,7 @@ def get_villagers_by_species(filename, search_string="All"):
     return sorted(villagers)
 
 
-print(get_villagers_by_species("villagers.csv", "Horse"))
+# print(get_villagers_by_species("villagers.csv", "Horse"))
 
 
 def all_names_by_hobby(filename):
@@ -74,6 +74,15 @@ def all_names_by_hobby(filename):
     """
 
     # TODO: replace this with your code
+    data_log = open(filename)
+
+    names_by_hobby = []
+
+    for line in data_log:
+        line = line.rstrip()
+        words = line.split("|")
+
+        names = words[0], words[3]
 
     return []
 
